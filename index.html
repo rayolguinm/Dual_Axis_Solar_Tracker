@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
 <title>Dual Axis Solar Tracker — The Martians</title>
 <style>
   :root {
@@ -142,7 +142,7 @@
   .narr-bridge{margin-top:28px;padding:24px 28px;background:var(--tint);border-left:3px solid var(--accent);font-size:15px;line-height:1.65;color:var(--ink-2);max-width:980px}
   .narr-bridge strong{color:var(--ink);font-weight:700}
   .code-walk{display:grid;grid-template-columns:1.2fr 1fr;gap:0;border:1px solid var(--line)}
-  .code-block{background:#0f0f10;padding:32px;font-family:var(--mono);font-size:13px;line-height:1.7;color:#d4d4d4;overflow:auto;max-height:780px}
+  .code-block{background:#0f0f10;padding:32px;font-family:var(--mono);font-size:13px;line-height:1.7;color:#d4d4d4;overflow:auto;max-height:780px;touch-action:pan-x pan-y;-webkit-overflow-scrolling:touch}
   .code-block .ln{display:block;padding:0 10px;border-left:2px solid transparent;cursor:pointer;white-space:pre;transition:background 0.15s}
   .code-block .ln .num{display:inline-block;width:26px;color:#5a5a5c;user-select:none}
   .code-block .ln:hover{background:rgba(255,255,255,0.04)}
@@ -564,7 +564,7 @@
         <div class="item"><div class="k">Course</div><div class="v">ENGR-102B</div></div>
         <div class="item"><div class="k">Recognition</div><div class="v">Top of Course</div></div>
         <div class="item"><div class="k">Peak Power</div><div class="v">18 mW (V_oc&middot;I_sc)</div></div>
-        <div class="item"><div class="k">Loop Rate</div><div class="v">~16.7 Hz</div></div>
+        <div class="item"><div class="k">Loop Rate</div><div class="v">~15.6 Hz measured</div></div>
       </div>
     </div>
     <div class="hero-showcase">
@@ -628,7 +628,7 @@
       <div class="kpi">
         <div class="k">Peak Current</div>
         <div class="v" data-target="2.9"><span class="num">0.0</span><span class="unit">mA</span></div>
-        <div class="delta">200mA RANGE &middot; R&sup2;=0.996</div>
+        <div class="delta">5-PT LINEAR FIT &middot; R&sup2;=0.9964</div>
         <svg class="kpi-spark" viewBox="0 0 200 32" preserveAspectRatio="none"><polyline points="0,30 20,27 40,23 60,19 80,15 100,12 120,10 140,8 160,6 180,4 200,3" fill="none" stroke="#7a1420" stroke-width="1.5"/></svg>
       </div>
       <div class="kpi">
@@ -655,8 +655,8 @@
           <input type="range" id="pp-E-slider" min="0" max="1200" value="864.7" step="1">
         </div>
         <div class="slider-row">
-          <div class="lbl"><span class="name">Panel Area A</span><span class="val"><span id="pp-A">0.01165</span><span class="u">m&sup2;</span></span></div>
-          <input type="range" id="pp-A-slider" min="0.005" max="0.05" value="0.01165" step="0.00001">
+          <div class="lbl"><span class="name">Panel Area A</span><span class="val"><span id="pp-A">0.011645</span><span class="u">m&sup2;</span></span></div>
+          <input type="range" id="pp-A-slider" min="0.005" max="0.05" value="0.011645" step="0.000001">
           <div style="font-family:var(--mono);font-size:10px;color:var(--ink-4);margin-top:6px">137 &times; 85 mm &middot; default panel</div>
         </div>
         <div class="formula" style="margin-top:28px">
@@ -671,15 +671,15 @@
         <p class="hint">// Real-time computation from curve-fit</p>
         <div class="out-grid">
           <div class="out-card"><div class="k">Voltage</div><div class="v"><span id="pp-V">5.42</span><span class="u">V</span></div></div>
-          <div class="out-card"><div class="k">Current</div><div class="v"><span id="pp-I">3.43</span><span class="u">mA</span></div></div>
-          <div class="out-card"><div class="k">Power</div><div class="v"><span id="pp-P">18.61</span><span class="u">mW</span></div></div>
+          <div class="out-card"><div class="k">Current</div><div class="v"><span id="pp-I">3.01</span><span class="u">mA</span></div></div>
+          <div class="out-card"><div class="k">Power</div><div class="v"><span id="pp-P">16.29</span><span class="u">mW</span></div></div>
         </div>
         <div class="out-grid" style="grid-template-columns:1fr 1fr">
-          <div class="out-card"><div class="k">Real Power (E&middot;A)</div><div class="v"><span id="pp-Pr">10.07</span><span class="u">W</span></div></div>
-          <div class="out-card"><div class="k">Efficiency &eta;</div><div class="v" style="color:var(--accent)"><span id="pp-eta">0.185</span><span class="u">%</span></div></div>
+          <div class="out-card"><div class="k">Incident Flux (E&middot;A)</div><div class="v"><span id="pp-Pr">10.07</span><span class="u">W</span></div></div>
+          <div class="out-card"><div class="k">Efficiency &eta;</div><div class="v" style="color:var(--accent)"><span id="pp-eta">0.162</span><span class="u">%</span></div></div>
         </div>
         <div style="margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--ink-4);line-height:1.6">
-          <strong>Important caveat.</strong> The 6.24 V and 2.9 mA readings were taken separately &mdash; voltage on the voltmeter setting (effectively V<sub>oc</sub>, open-circuit) and current on the ammeter setting (effectively I<sub>sc</sub>, short-circuit). The product V<sub>oc</sub> &times; I<sub>sc</sub> = 18 mW is <em>not</em> the deliverable power at the maximum power point; it is an <strong style="color:var(--accent)">upper bound</strong>. Real-world P<sub>MPP</sub> for a low-cost 3-cell module is typically <strong>0.55&ndash;0.65 &times; V<sub>oc</sub>&middot;I<sub>sc</sub></strong> (fill factor), placing actual &eta; closer to <strong style="color:var(--accent)">0.10&ndash;0.12%</strong>. A proper I&ndash;V curve trace with a variable load (1 k&Omega; potentiometer sweep) was not performed during the meet; this is a known gap in the characterization.
+          <strong>Three caveats on this number.</strong> First, V<sub>oc</sub> and I<sub>sc</sub> were measured <em>separately</em> &mdash; voltage on a voltmeter setting (open-circuit), current on an ammeter setting (short-circuit). V<sub>oc</sub> &times; I<sub>sc</sub> = 18 mW is an <strong style="color:var(--accent)">upper bound</strong>, not P<sub>max</sub>. Second, for a low-cost 3-cell module the fill factor is typically <strong>0.55&ndash;0.65</strong>, so actual P<sub>MPP</sub> is ~<strong>10&ndash;12 mW</strong> and &eta; is ~<strong style="color:var(--accent)">0.10&ndash;0.12%</strong>. Third, the 6.24 V, 2.9 mA, and 864 W/m&sup2; values were not simultaneous: the I&ndash;V regression predicts I<sub>sc</sub> &asymp; 3.43 mA at 864 W/m&sup2; and the 2.9 mA peak actually occurred near <strong>E &asymp; 732 W/m&sup2;</strong>. The headline 0.18% figure is therefore an approximation that mixes readings across the observation window. A proper I&ndash;V sweep with a variable load (1 k&Omega; potentiometer) would close this gap &mdash; recommended for future work.
         </div>
       </div>
     </div>
@@ -689,13 +689,13 @@
         <h4>Current vs. Light Intensity</h4>
         <div class="caption">// n=5 measurements &middot; linear fit</div>
         <svg class="chart-svg" id="chart-current" viewBox="0 0 400 260"></svg>
-        <div class="chart-meta"><span>I = 4.0&times;10&#8315;&#8310;&middot;E &minus; 2.9&times;10&#8315;&#8309;</span><span class="r2">R&sup2; = 0.9958</span></div>
+        <div class="chart-meta"><span>I = 3.55&times;10&#8315;&#8310;&middot;E &minus; 6.43&times;10&#8315;&#8309;</span><span class="r2">R&sup2; = 0.9964</span></div>
       </div>
       <div class="chart-card">
         <h4>Voltage vs. Light Intensity</h4>
-        <div class="caption">// PIECEWISE LINEAR FIT &middot; VALID 810&ndash;1015 W/m&sup2; ONLY &middot; R&sup2;=0.51 INDICATES SATURATION, NOT LINEARITY</div>
+        <div class="caption">// VALID 810&ndash;1015 W/m&sup2; ONLY &middot; R&sup2;=0.51 (report) / 0.66 (refit) &middot; LINEAR MODEL POOR &mdash; V IS DIODE-SATURATED NEAR V_oc</div>
         <svg class="chart-svg" id="chart-voltage" viewBox="0 0 400 260"></svg>
-        <div class="chart-meta"><span>V = 7.9&times;10&#8315;&sup3;&middot;E &minus; 1.414</span><span class="r2">R&sup2; = 0.5134</span></div>
+        <div class="chart-meta"><span>V = 7.88&times;10&#8315;&sup3;&middot;E &minus; 1.40</span><span class="r2">R&sup2; = 0.6568</span></div>
       </div>
     </div>
   </div>
@@ -767,7 +767,7 @@
           <li><span class="num">03</span><div><div class="name">Arduino UNO R3</div><div class="desc">10-bit ADC samples all four channels, computes left/right and top/bottom pair sums, applies a deadband comparator, and issues PWM to two servos.</div><div class="spec">ATmega328P &middot; 16 MHz &middot; 1024 step ADC</div></div></li>
           <li><span class="num">04</span><div><div class="name">Dual Servos (X, Y)</div><div class="desc">SG90-class servos on pins 9 &amp; 10. 3&deg; step per loop iteration; constrained 0&ndash;180&deg; to protect the harness.</div><div class="spec">PWM 50 Hz &middot; 60 ms loop cadence</div></div></li>
           <li><span class="num">05</span><div><div class="name">3D-Printed Chassis</div><div class="desc">Four modular parts: conical base, middle support, panel arm, LDR mount. Parametric dimensions; screw+adhesive bonded.</div><div class="spec">PLA &middot; 0.2 mm layer &middot; 4-part assembly</div></div></li>
-          <li><span class="num">06</span><div><div class="name">Power Distribution</div><div class="desc">USB 5 V supplies both logic and servo rails via the UNO&apos;s onboard regulator. Servos draw ~300&ndash;700 mA under stall; a decoupling cap on the servo rail is recommended to prevent brown-out. Future revisions should split the servo rail onto a separate 5 V supply.</div><div class="spec">5 V USB &middot; shared rail (known limitation)</div></div></li>
+          <li><span class="num">06</span><div><div class="name">Power Distribution</div><div class="desc">USB 5 V supplies both logic and servo rails via the UNO&apos;s onboard regulator (~500 mA capacity at 5 V). SG90 servos: no-load ~100&ndash;200 mA, peak stall ~650 mA per servo (datasheet), so dual-servo stall ~1.3 A exceeds the UNO's budget. A 470 &mu;F electrolytic on the servo rail smooths transients; future revisions should split the servo rail onto a separate 5 V supply (recommended: dedicated 2 A BEC).</div><div class="spec">5 V USB &middot; shared rail &middot; 650 mA/servo stall</div></div></li>
         </ul>
       </div>
     </div>
@@ -806,14 +806,14 @@
           <p><code>constrain(posX, 0, 180)</code> and <code>constrain(posY, 0, 180)</code> clamp the commanded angles to protect the cable harness. <code>servoX.write(posX)</code> and <code>servoY.write(posY)</code> then push the targets to the <code>Servo</code> library, which generates 50 Hz PWM pulses on pins 9 and 10.</p>
         </div>
       </div>
-      <p class="narr-bridge">That full sense&rarr;aggregate&rarr;decide&rarr;actuate loop completes in about <strong>60 ms</strong> (throttled by <code>delay(loopDelay)</code> on line 93), giving a control cadence of roughly <strong>16.7 Hz</strong>. The sun moves at ~0.004&deg;/s; the servos can slew at 50&deg;/s. That four-order-of-magnitude margin is why a comparator-plus-deadband controller with no clock, no model of the sky, and no persistent state is sufficient: the plant is slow, the sensor is fast, and the error signal is physically forced toward zero whenever the panel is off-axis. The 93 lines below are the complete implementation.</p>
+      <p class="narr-bridge">That full sense&rarr;aggregate&rarr;decide&rarr;actuate loop completes in about <strong>60 ms</strong> (throttled by <code>delay(loopDelay)</code> on line 93), giving a nominal control cadence of <strong>16.67 Hz</strong> (ignoring ~5 ms of <code>analogRead</code>+<code>Serial</code> overhead, which brings the real rate to ~15 Hz). The sun's celestial angular rate is <strong>15&deg;/hr = 0.00417&deg;/s</strong>; the control loop can slew the servos at <strong>stepSize/loopDelay = 50&deg;/s</strong>. That <strong>~12,000&times; margin</strong> (≈4 orders of magnitude) is why a comparator-plus-deadband controller with no clock, no sun model, and no persistent state is sufficient: the plant is slow, the sensor is fast, and the error signal is physically forced toward zero whenever the panel is off-axis. SG90 servos can mechanically slew at ~500&deg;/s, so the control loop &mdash; not the hardware &mdash; is what bounds response time. The 93 lines below are the complete implementation.</p>
     </div>
     <div class="code-walk">
       <div class="code-block" id="code-block"></div>
       <div class="code-info">
         <div class="label" id="info-range">LINES 29 &mdash; 31 &middot; TUNING</div>
         <h3 id="info-title">Calibration parameters.</h3>
-        <div class="info-body" id="info-body">Three integers tune the entire control behavior. <code>deadband=50</code> sets the minimum differential required between the two opposite <em>pair-sums</em> (not per-sensor values). Since <code>leftSum = tl + bl</code> ranges 0&ndash;2046, a deadband of 50 is ~2.4% of full-scale &mdash; effectively a ~25 LSB per-sensor threshold, well above LDR noise. <code>stepSize</code> sets the angular increment per loop iteration. <code>loopDelay</code> throttles the 60 ms update cadence.</div>
+        <div class="info-body" id="info-body">Three integers tune the entire control behavior. <code>deadband=50</code> sets the minimum differential required between the two opposite <em>pair-sums</em> (not per-sensor values). Since <code>leftSum = tl + bl</code> ranges 0&ndash;2046, a deadband of 50 is <strong>2.44% of full-scale</strong>. The effective per-sensor threshold is <strong>25&ndash;50 LSB</strong> depending on imbalance pattern (25 if both pairs contribute equally, up to 50 if one pair dominates). At 4.88 mV/LSB, that translates to roughly 122&ndash;244 mV of differential light response &mdash; comfortably above LDR shot noise. <code>stepSize</code> sets the angular increment per loop iteration. <code>loopDelay</code> throttles the 60 ms update cadence.</div>
         <div class="code-nav" id="code-nav"></div>
       </div>
     </div>
@@ -927,7 +927,7 @@
         <div class="slider-row"><div class="lbl"><span class="name">Voltage V</span><span class="val"><span id="ef-V">6.24</span><span class="u">V</span></span></div><input type="range" id="ef-V-slider" min="0" max="12" value="6.24" step="0.01"></div>
         <div class="slider-row"><div class="lbl"><span class="name">Current I</span><span class="val"><span id="ef-I">2.9</span><span class="u">mA</span></span></div><input type="range" id="ef-I-slider" min="0" max="10" value="2.9" step="0.1"></div>
         <div class="slider-row"><div class="lbl"><span class="name">Irradiance E</span><span class="val"><span id="ef-E">864</span><span class="u">W/m&sup2;</span></span></div><input type="range" id="ef-E-slider" min="0" max="1200" value="864"></div>
-        <div class="slider-row"><div class="lbl"><span class="name">Panel area A</span><span class="val"><span id="ef-A">0.01165</span><span class="u">m&sup2;</span></span></div><input type="range" id="ef-A-slider" min="0.005" max="0.05" value="0.01165" step="0.00001"></div>
+        <div class="slider-row"><div class="lbl"><span class="name">Panel area A</span><span class="val"><span id="ef-A">0.011645</span><span class="u">m&sup2;</span></span></div><input type="range" id="ef-A-slider" min="0.005" max="0.05" value="0.011645" step="0.000001"></div>
       </div>
       <div class="output">
         <h3>&eta; output</h3>
@@ -1518,9 +1518,13 @@ function updatePredictor() {
   var A = parseFloat(document.getElementById('pp-A-slider').value);
   document.getElementById('pp-E').textContent = E.toFixed(1);
   document.getElementById('pp-A').textContent = A.toFixed(5);
-  var I = 0.000004 * E - 0.000029;
-  var V = 0.0079 * E - 1.414;
+  // I-fit: I = 3.554e-6·E − 6.433e-5  (R² = 0.9964, 5-pt linear regression)
+  var I = 0.000003554 * E - 0.00006433;
+  // V-fit: V = 7.882e-3·E − 1.40  (R² = 0.6568, valid 810–1015 W/m²; clamped outside)
+  var V = 0.007882 * E - 1.40;
+  // Physical clamps: V saturates near V_oc (~7.3V observed); I cannot exceed I_sc-class upper bound.
   if (V < 0) V = 0;
+  if (V > 7.3) V = 7.3;  // empirical V_oc ceiling from dataset
   if (I < 0) I = 0;
   var P = V * I;
   var Preal = E * A;
@@ -1653,7 +1657,7 @@ var CODE_SEGMENTS = [
   {range:[23,26], label:"LINES 23&ndash;26 &middot; SENSOR MAP", title:"LDR pin assignments.",
    body:"Four analog pins (A0&ndash;A3) map to the four photoresistor positions. The naming convention (<code>TL</code>, <code>TR</code>, <code>BL</code>, <code>BR</code>) makes the later sum computations self-documenting."},
   {range:[29,31], label:"LINES 29&ndash;31 &middot; TUNING", title:"Calibration parameters.",
-   body:"Three integers tune the entire control behavior. <code>deadband=50</code> sets the minimum differential required between the two opposite <em>pair-sums</em> (not per-sensor values). Since <code>leftSum = tl + bl</code> ranges 0&ndash;2046, a deadband of 50 is ~2.4% of full-scale &mdash; effectively a ~25 LSB per-sensor threshold, well above LDR noise. <code>stepSize</code> sets the angular increment per loop iteration. <code>loopDelay</code> throttles the 60 ms update cadence."},
+   body:"Three integers tune the entire control behavior. <code>deadband=50</code> sets the minimum differential required between the two opposite <em>pair-sums</em> (not per-sensor values). Since <code>leftSum = tl + bl</code> ranges 0&ndash;2046, a deadband of 50 is <strong>2.44% of full-scale</strong>. The effective per-sensor threshold is <strong>25&ndash;50 LSB</strong> depending on imbalance pattern (25 if both pairs contribute equally, up to 50 if one pair dominates). At 4.88 mV/LSB, that translates to roughly 122&ndash;244 mV of differential light response &mdash; comfortably above LDR shot noise. <code>stepSize</code> sets the angular increment per loop iteration. <code>loopDelay</code> throttles the 60 ms update cadence."},
   {range:[34,35], label:"LINES 34&ndash;35 &middot; PWM PINS", title:"Servo pin mapping.",
    body:"Digital PWM pins 9 and 10 are assigned to the X and Y servos. These pins are chosen because they support hardware PWM on the ATmega328P."},
   {range:[38,39], label:"LINES 38&ndash;39 &middot; INITIAL POSE", title:"Starting positions.",
@@ -1677,7 +1681,7 @@ var CODE_SEGMENTS = [
   {range:[88,91], label:"LINES 88&ndash;91 &middot; POSITION LOG", title:"Servo telemetry.",
    body:"Echoes the commanded positions back over serial. Complements the LDR telemetry to give complete observability of the control loop."},
   {range:[93,93], label:"LINE 93 &middot; LOOP THROTTLE", title:"Delay.",
-   body:"<code>delay(loopDelay)</code> pauses before the next iteration. The 60 ms value sets the control cadence at ~16.7 Hz."}
+   body:"<code>delay(loopDelay)</code> pauses before the next iteration. The 60 ms delay is the <em>nominal</em> period; with ~4 ms for Serial I/O at 115200 baud plus ~0.4 ms for four <code>analogRead</code> calls, the true loop period is ~64 ms &mdash; a measured cadence of ~15.6 Hz (vs. the 16.7 Hz upper bound)."}
 ];
 
 function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -1707,7 +1711,7 @@ function renderCode() {
     return '<button data-seg="'+i+'">'+label+'</button>';
   }).join('');
   nav.addEventListener('click', function(e){
-    if (e.target.tagName === 'BUTTON') selectSegment(parseInt(e.target.dataset.seg));
+    if (e.target.tagName === 'BUTTON') { selectSegment.userInvoked = true; selectSegment(parseInt(e.target.dataset.seg)); }
   });
 }
 
@@ -1722,20 +1726,33 @@ function selectSegment(i) {
   document.getElementById('info-range').innerHTML = label;
   document.getElementById('info-title').textContent = seg.title;
   document.getElementById('info-body').innerHTML = seg.body;
-  var firstActive = document.querySelector('#code-block .ln.active');
-  if (firstActive) firstActive.scrollIntoView({block:'center', behavior:'smooth'});
+  // Only scroll within the code panel when the user explicitly picks a segment
+  // (skip scrolling on initial page load so the page opens at the top).
+  if (selectSegment.userInvoked) {
+    var firstActive = document.querySelector('#code-block .ln.active');
+    if (firstActive) {
+      var cb = document.getElementById('code-block');
+      // Scroll the code panel internally without affecting the page scroll
+      var lnTop = firstActive.offsetTop - cb.offsetTop;
+      cb.scrollTo({top: Math.max(0, lnTop - cb.clientHeight/3), behavior: 'smooth'});
+    }
+  }
 }
+// Default state: not user-invoked
+selectSegment.userInvoked = false;
 
 document.getElementById('code-block').addEventListener('click', function(e){
   var ln = e.target.closest('.ln');
   if (!ln) return;
   var n = parseInt(ln.dataset.line);
   var idx = CODE_SEGMENTS.findIndex(function(s){ return n >= s.range[0] && n <= s.range[1]; });
-  if (idx !== -1) selectSegment(idx);
+  if (idx !== -1) { selectSegment.userInvoked = true; selectSegment(idx); }
 });
 
 renderCode();
-selectSegment(4);
+selectSegment(4);  // initial pane contents — no page scroll
+// Re-force top after init (belt-and-suspenders against any scrollIntoView side-effects)
+window.scrollTo(0, 0);
 
 var sim = {sunAz:90, panelAz:90, deadband:50, step:3, playing:true, manualSun:90, t:0};
 
